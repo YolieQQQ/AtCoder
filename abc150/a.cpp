@@ -4,7 +4,17 @@ using namespace std;
 #define xrep(i,a,b) for(int i=int(a);i<int(b);++i)
 using ll = long long;
 
+
 int main() {
-    cout << "Hello,World" << endl;
+    int K, X;
+    cin >> K >> X;
+    int all = K*500;
+    if(all>=X) {
+        cout << "Yes" << endl;
+    }
+    else {
+        cout << "No" << endl;
+    }
+
     return 0;
 }

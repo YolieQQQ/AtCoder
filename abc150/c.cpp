@@ -4,7 +4,8 @@ using namespace std;
 #define xrep(i,a,b) for(int i=int(a);i<int(b);++i)
 using ll = long long;
 
+
 int main() {
-    cout << "Hello,World" << endl;
+    
     return 0;
 }
