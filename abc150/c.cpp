@@ -6,6 +6,26 @@ using ll = long long;
 
 
 int main() {
-    
+    int N;
+    cin >> N;
+    vector<int> P(N);
+    vector<int> Q(N);
+    rep(i, N) {
+        cin >> P[i];
+    }
+    rep(i, N) { 
+        cin >> Q[i];
+    }
+    vector<int> sorted;
+    xrep(i, 1, N+1) {
+        sorted.push_back(i);
+    }
+    map<vector<int>, int> mp;
+    do {
+        mp[sorted] = mp.size();
+    } while(next_permutation(sorted.begin(), sorted.end()));
+
+    int ans = abs(mp[P]-mp[Q]);
+    cout << ans << endl;
     return 0;
 }
