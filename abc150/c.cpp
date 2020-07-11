@@ -6,6 +6,9 @@ using ll = long long;
 
 
 int main() {
+<<<<<<< HEAD
+    
+=======
     int N;
     cin >> N;
     vector<int> P(N);
@@ -27,5 +30,6 @@ int main() {
 
     int ans = abs(mp[P]-mp[Q]);
     cout << ans << endl;
+>>>>>>> 55c56345048bd9abfab7a22096d483dc575b3ead
     return 0;
 }
