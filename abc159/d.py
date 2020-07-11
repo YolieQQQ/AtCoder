@@ -1,31 +1,34 @@
-from scipy.special import comb
+from operator import mul
+from functools import reduce
 
-INF = 100100100
+def comb(n, r):
+    r = min(r, n - r)
+    numer = reduce(mul, range(n, n - r, -1), 1)
+    denom = reduce(mul, range(1, r + 1), 1)
+    return numer // denom
 
 N = int(input())
 A = list(map(int, input().split()))
+sorted_A = sorted(A)
+countNums = [0]*(N+1)
 
-A.insert(0, INF)
-anss = []
-choose = [0]*(N+1)
-for n in range(N):
-    Ad = A.copy()
-    Ad[n] = INF
-    
-    for i in range(N+1):
-        num = 0
-        for j in range(i, N+1):
-            if Ad[i]==INF or Ad[j] == INF:
-                continue
-            if Ad[i]==Ad[j]:
-                num += 1
-                choose[Ad[i]] = num
-        ans = 0
-    for c in choose:
-        ans += int(comb(c, 2))
-    choose = [0]*(N+1)
+target = sorted_A[0]
+for i in range(N):
+    if target==sorted_A[i]:
+        countNums[target] += 1
+    else:
+        target = sorted_A[i]
+        countNums[target] += 1;
+
+
+for i in range(N):
+    a = A[i]
+    countNums[a] -= 1
+    ans = 0
+    for c in countNums:
+        ans += comb(c, 2)
     print(ans)
-    
+    countNums[a] += 1
 
 
 

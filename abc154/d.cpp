@@ -4,27 +4,37 @@ using namespace std;
 #define xrep(i,a,b) for(int i=int(a);i<int(b);++i)
 using ll = long long;
 
+double maxVec(vector<double> &V) {
+    double maxV = 0;
+    for(auto v: V) {
+        maxV = max(v, maxV);
+    }
+    return maxV;
+}
+
+
+
+
 int main() {
     int N, K;
     cin >> N >> K;
-    vector<int> P(N, 0);
-    rep(i, N-K) {
-        int p;
-        cin >> p;
-        P[i] = p;
-    }   
-    vector<int> accSum;
-    int sum = 0;
+    vector<double> P(N);
     rep(i, N) {
-        sum += P[i]+1;
+        cin >> P[i];
+    }
+
+    vector<double> accSum;
+    double sum = 0;
+    for(double p: P) {
+        sum += p;
         accSum.push_back(sum);
     }
-    int maxV = -1;
-    int e = -1;
-    rep(i, N*N) {
-        e = accSum[i+K]-accSum[i];
-        maxV = max(maxV, e);
+    vector<double> exs;
+    rep(i, N-K) {
+        exs.push_back((1+accSum[i+K]-accSum[i-1])/2);
     }
-    printf("%.8f\n", (double)maxV/2.0);
-    return 0;
+
+
+    cout << maxVec(exs) << endl;
+    
 }
