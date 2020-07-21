@@ -2,12 +2,10 @@ import sys
 
 sys.setrecursionlimit(200000)
 
-
 H = None 
 W = None 
 ans = "No"
 visited = {}
-
 
 def dfs(S, x, y):
     global H, W, ans, visited
@@ -27,7 +25,6 @@ def dfs(S, x, y):
     dfs(S, x, y+1)
     dfs(S, x, y-1)
 
-
 if __name__ == '__main__':
     S = []
     H, W = map(int, input().split())
@@ -42,6 +39,5 @@ if __name__ == '__main__':
             if S[h][w] == 's':
                 start_x = w
                 start_y = h
-
     dfs(S, start_x, start_y)
     print(ans)
