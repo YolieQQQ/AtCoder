@@ -1,3 +1,12 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+void print() {
+    cout << endl;
+}
+template <class Head, class... Tail>
+void print(Head &&head, Tail &&... tail) {
+    cout << head;
 #include <bits/stdc++.h>
 using namespace std;
 void print() {
@@ -30,38 +39,30 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 100100100;
 
-
-int count(vector<int> &A) {
-    int cnt = 0;
-    for(auto a: A) {
-        cnt += (a*(a-1))/2;
-    }
-
-    return cnt;
-}
-
 int main() {
-    int N;
+    int N, Q;
     cin >> N;
     vector<int> A(N);
-    rep(i, N) {
-        cin >> A[i];
+    rep(i, N) cin >> A[i];
+    cin >> Q;
+    vector<int> B(Q), C(Q);
+    rep(i, Q) {
+        cin >> B[i];
+        cin >> C[i];
     }
-    int maxv = 0;
+    int sum = 0 ;   
+    vector<int> cntA(100000, 0);
     for(auto a: A) {
-        maxv = max(a, maxv);
+        sum += a;
+        cntA[a]++;
     }
 
-    vector<int> countA(maxv+1, 0);
-
-    rep(i, N) {
-        ++countA[A[i]];
+    rep(i, Q) {
+        int inc = (C[i]-B[i])*cntA[B[i]];
+        cntA[C[i]] += cntA[B[i]];
+        sum += inc;
+        print(sum);
     }
 
-    for(auto a: A) {
-        auto calA = countA; 
-        --calA[a];
-        print(count(calA));
-    }
     return 0;
 }

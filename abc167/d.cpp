@@ -30,38 +30,36 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 100100100;
 
-
-int count(vector<int> &A) {
-    int cnt = 0;
-    for(auto a: A) {
-        cnt += (a*(a-1))/2;
-    }
-
-    return cnt;
-}
-
 int main() {
-    int N;
-    cin >> N;
+    int N, K;
+    cin >> N >> K;
     vector<int> A(N);
     rep(i, N) {
-        cin >> A[i];
-    }
-    int maxv = 0;
-    for(auto a: A) {
-        maxv = max(a, maxv);
-    }
-
-    vector<int> countA(maxv+1, 0);
-
-    rep(i, N) {
-        ++countA[A[i]];
+        int a;
+        cin >> a;
+        --a;
+        A[i] = a;
     }
 
-    for(auto a: A) {
-        auto calA = countA; 
-        --calA[a];
-        print(count(calA));
+    set<int> notDouble;
+    vector<int> loop;
+    int now = 0;
+    int nxt;
+    loop.push_back(now);
+    notDouble.insert(now);
+    
+    while(1) {
+        nxt = A[now];
+        print(nxt);
+        loop.push_back(nxt);
+        notDouble.insert(nxt);
+        if(loop.size()!=notDouble.size()) {
+            break;
+        }
     }
+
+    print(loop);
+
+
     return 0;
 }
