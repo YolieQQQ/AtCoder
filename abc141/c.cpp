@@ -30,25 +30,20 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 100100100;
 
-
-
 int main() {
-    int N, M;
-    cin >> N >> M;
-    vector<int> H(N+1);
-    xrep(i, 1, N) cin >> H[i];
-    vector<vector<int>> AB(N+1);
-    rep(i, M) {
-        int a, b;
-        cin >> a >> b;
-        AB[a].push_back(b);
-        AB[b].push_back(a);
+    int N, K, Q;
+    cin >> N >> K >> Q;
+    vector<int> A(Q);
+    rep(i, Q) cin >> A[i];
+
+    int maxv = *max_element(A.begin(), A.end());
+    vector<int> countAr(maxv+1, 0);
+
+    rep(i, N) {
+        countAr[A[i]] += 1;
     }
 
-    rep(i, N+1) {
-        print(i);
-        print(AB[i]);
-    }
+    print(countAr);
 
 
 

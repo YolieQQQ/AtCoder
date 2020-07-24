@@ -1,6 +1,7 @@
 if __name__ == '__main__':
     S = list(input())
     Q = int(input())
+
     for _ in range(Q):
         Query = list(map(str, input().split()))
         if len(Query)==1:
@@ -13,7 +14,8 @@ if __name__ == '__main__':
         
 
     
-    print(''.join(S))
+    ans= ''
+    for s in S:
+        ans += s
+    print(ans)
                 
-
-
