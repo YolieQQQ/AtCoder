@@ -28,23 +28,43 @@ void print(vector<vector<T>> &df) {
 #define rep(i, n) for (int i = 0, i##_len = (n); i < i##_len; ++i)
 #define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
 using ll = long long;
-const int INF = 100100100;
+const int INF = 1001001001;
 vector<int> SInts;
 
-int dfs(int start1, int end1, int start2, int start2, int sum) {
-    if(start==SInts.size()-1) {
-        return sum;
-    }
-    if(end1==)
-}
-
 int main() {
-    int ans = 0;
     string S;
     cin >> S;
     for(char s: S) {
         SInts.push_back(s-'0');
     }
+    int ans = 0;
+    int N = SInts.size();
+
+    rep(bit, 1<<(N)) {
+        vector<int> opsIndex;
+        rep(i, N) {
+            if(bit>>i&1) {
+                opsIndex.push_back(i);
+            }
+        }
+        int M = N-opsIndex.size();
+        rep(i, M) {
+            opsIndex.push_back(N);
+        }
+        int prev = 0;
+        int num = 0;
+        for(int op: opsIndex) {
+            xrep(j, prev, op) {
+                num += SInts[j]*pow(10, j-prev);
+                prev = op;
+            }
+        }
+        print(num);
+        ans += num;
+        
+    }
+
+    print(ans);
 
     return 0;
 }
