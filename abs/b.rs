@@ -18,7 +18,7 @@ fn read<T: FromStr>() -> T {
 fn main() {
     let a: usize = read();
     let b: usize = read();
-    let c: usize = read();
-    let s: String = read();
-    println!("{} {}", a+b+c, s);
+    let mul = a*b;
+    let ans = if (a*b)%2==0 { "Even" } else { "Odd" };
+    println!("{}", ans);
 }

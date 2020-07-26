@@ -1,5 +1,6 @@
 use std::io::*;
 use std::str::FromStr;
+use std::collections::*;
 
 fn read<T: FromStr>() -> T {
     let stdin = stdin();
@@ -16,9 +17,6 @@ fn read<T: FromStr>() -> T {
 
 
 fn main() {
-    let a: usize = read();
-    let b: usize = read();
-    let c: usize = read();
-    let s: String = read();
-    println!("{} {}", a+b+c, s);
+    
+    
 }

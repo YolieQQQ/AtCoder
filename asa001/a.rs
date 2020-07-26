@@ -16,9 +16,21 @@ fn read<T: FromStr>() -> T {
 
 
 fn main() {
-    let a: usize = read();
-    let b: usize = read();
-    let c: usize = read();
-    let s: String = read();
-    println!("{} {}", a+b+c, s);
+    let n: i64 = read();
+    let k: i64 = read();
+    let mut h = Vec::new();
+    for _ in 0..n {
+        let hp: i64 = read();
+        h.push(hp);
+    }
+    h.sort();
+    let mut cnt = 0;
+    for i in 0..h.len()-k {
+        cnt += h[i];
+    }
+
+
+
+    println!("{}", cnt);
+    
 }

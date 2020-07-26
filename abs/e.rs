@@ -1,5 +1,6 @@
 use std::io::*;
 use std::str::FromStr;
+use std::collections::*;
 
 fn read<T: FromStr>() -> T {
     let stdin = stdin();
@@ -16,9 +17,23 @@ fn read<T: FromStr>() -> T {
 
 
 fn main() {
-    let a: usize = read();
-    let b: usize = read();
-    let c: usize = read();
-    let s: String = read();
-    println!("{} {}", a+b+c, s);
+    let C500: isize = read();
+    let C100: isize = read();
+    let C50: isize = read();
+    let X: isize = read();
+
+
+    let mut cnt = 0;
+    
+    for i in 0..C500+1 {
+        for j in 0..C100+1 {
+            for k in 0..C50+1 {
+                if 500*i+100*j+50*k==X {
+                    cnt += 1;
+                }
+            }
+        }
+    }
+
+    println!("{}", cnt);
 }

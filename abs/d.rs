@@ -1,6 +1,6 @@
 use std::io::*;
 use std::str::FromStr;
-
+use std::iter::*;
 fn read<T: FromStr>() -> T {
     let stdin = stdin();
     let stdin = stdin.lock();
@@ -16,9 +16,23 @@ fn read<T: FromStr>() -> T {
 
 
 fn main() {
-    let a: usize = read();
-    let b: usize = read();
-    let c: usize = read();
-    let s: String = read();
-    println!("{} {}", a+b+c, s);
+    let N: usize = read();
+    let mut A = Vec::new();
+    for _ in 0..N {
+        let a: usize = read();
+        A.push(a);
+    }
+    let mut cnt = 0;
+    'solve:
+    loop {
+        for i in 0..N {
+            if A[i]%2==0 {
+                A[i] /= 2;
+            } else {
+                break 'solve;
+            }
+        }
+        cnt += 1;
+    }
+    println!("{}", cnt);
 }
