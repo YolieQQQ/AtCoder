@@ -17,13 +17,21 @@ fn read<T: FromStr>() -> T {
 
 
 fn main() {
-    let a: isize = read();
-    let b: isize = read();
-    let c = a-2*b;
-    if c>0 {
-        println!("{}", c);
+    let N: usize = read();
+    let mut L = Vec::new();
+    for _ in 0..N {
+        let l: i128 = read();
+        L.push(l);
     }
-    else {
-        println!("0");
+    let mut cnt = 0;
+    for a in 0..N {
+        for b in a+1..N {
+            for c in b+1..N {
+                if L[a]<(L[b]+L[c]) && L[b]<(L[c]+L[a]) && L[c]<(L[a]+L[b]) {
+                    cnt += 1;
+                }
+            }
+        }
     }
+    println!("{}", cnt);
 }

@@ -30,11 +30,28 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
+vector<string> first = {"snakes", "programing" "cobra", "monty"};
+vector<string> second = {"python", "python", "anaconda", "python"};
+
+
 int main() {
-    int N, M;
-    cin >> N >> M;
-    
-    print(N*(N-1)/2+M*(M-1)/2);
+    int N = first.size();
+    int cnt = 0;
+    int ans = 0;
+    rep(i, N) {
+        int f = 0;
+        int s = 0;
+        rep(j, N) {
+            if(first[i]==first[j]) f++;
+            if(first[i]==second[j]) f++;
+            if(second[i]==first[j]) s++;
+            if(second[i]==second[j]) s++;
+        }
+        ans = max(f, ans);
+        ans = max(s, ans);
+    }
+
+    print(ans);
     
     return 0;
 }

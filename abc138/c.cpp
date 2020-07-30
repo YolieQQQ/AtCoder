@@ -31,10 +31,10 @@ using ll = long long;
 const int INF = 1001001001;
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    
-    print(N*(N-1)/2+M*(M-1)/2);
+    int n;
+    cin >> n;
+    vector<double> v(n);
+    rep(i, n) cin >> v[i];
     
     return 0;
 }

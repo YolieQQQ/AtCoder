@@ -31,10 +31,24 @@ using ll = long long;
 const int INF = 1001001001;
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    
-    print(N*(N-1)/2+M*(M-1)/2);
-    
+    int A, B, C, X, Y;
+    cin >> A >> B >> C >> X >> Y;
+    int maxXY = 10000;
+
+    int loopmax = maxXY+1;
+    print(loopmax);
+    int mincost = INF;
+    rep(a, loopmax) {
+        rep(b, loopmax) {
+            rep(c, loopmax) {
+                if(a+(c/2)>=X && b+(c/2)>=Y) {
+                    mincost = min(mincost, A*a+B*b+C*c);
+                } 
+            }
+        }
+    }
+
+    print(mincost);
+
     return 0;
 }

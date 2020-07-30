@@ -31,41 +31,54 @@ using ll = long long;
 const int INF = 100100100;
 
 int main() {
-    int N, K, R, S, P;
-    cin >> N >> K >> R >> S >> P;
+    int N, K;
+    int R, S, P;
     string T;
-    cin >> T;
-    vector<char> Schar;
-    for(auto s: T) {
-        Schar.push_back(s);
-    }
-    vector<int> prevHands;
-    sort(Schar.begin(), Schar.end());
-    int ans = -1;
-    int i = 0;
-    do {
-        ++i;
-        if(i%K==0) {
-            int prev = prevHands[prevHands.size()-K];
-            if(Schar[i]==prev) continue;
+    cin >> N >> K >> R >> S >> P >> T;
+    vector<char> winT;
+
+    for(auto t: T) {
+        if(t=='r') {
+            winT.push_back('p');
         }
-        int sum = 0;
-        for(char s: Schar) {
-            if(s=='r') {
-                sum += R;
+        else if(t=='s') {
+            winT.push_back('r');
+        }
+        else {
+            winT.push_back('s');
+        }
+    }
+    print(winT);
+
+    rep(i, N-K) {
+        if(winT[i]==winT[i+K]) {
+            if(winT[i]=='r') {
+                winT[i] = 's';
             }
-            if(s=='s') {
-                sum += S;
+            else if(winT[i]=='s') {
+                winT[i] = 'p';
             }
-            if(s=='p') {
-                sum += P;
+            else {
+                winT[i] = 'r';
             }
         }
-        int ans = max(sum, ans);
     }
-    while (next_permutation(Schar.begin(), Schar.end()));
-    
+
+    int ans = 0;
+    print(winT);
+    for(auto wt: winT) {
+        if(wt=='r') {
+            ans += R;
+        }
+        else if(wt=='s') {
+            ans += S;
+        }
+        else {
+            ans += P;
+        }
+    }
     print(ans);
+
 
     return 0;
 }

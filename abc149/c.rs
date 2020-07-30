@@ -15,15 +15,26 @@ fn read<T: FromStr>() -> T {
 }
 
 
+fn get_next_prime(mut x: usize) {
+    loop {
+        let mut is_prime_cnt = 0;
+        for p in 2..x {
+            if x%p==0 {
+                break;
+            } else {
+                is_prime_cnt += 1;
+            }
+        }
+        if is_prime_cnt==x-2 {
+            println!("{}", x);
+            return;
+        }
+        x += 1;
+    }
+}
+
 
 fn main() {
-    let a: isize = read();
-    let b: isize = read();
-    let c = a-2*b;
-    if c>0 {
-        println!("{}", c);
-    }
-    else {
-        println!("0");
-    }
+    let X: usize = read();
+    get_next_prime(X);
 }

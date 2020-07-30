@@ -29,12 +29,35 @@ void print(vector<vector<T>> &df) {
 #define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
 using ll = long long;
 const int INF = 1001001001;
+const int BIG = 10010;
+
+int dp[BIG];
+int h[BIG];
+int N, K;
+
+bool done[BIG];
+int memo[BIG];
+
+int rec(int i) {
+    int ret;
+    if(i==0) return 0;
+    if(done[i]) return memo[i];
+    done[i] = true;
+    xrep(k, 1, K+1) {
+        ret = abs(h[i+k]-h[i]);
+    }
+
+
+    return ret;
+
+
+}
+
+
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    
-    print(N*(N-1)/2+M*(M-1)/2);
-    
+    cin >> N >> K;
+    rep(i, N) cin >> h[i];
+
     return 0;
 }

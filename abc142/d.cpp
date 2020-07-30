@@ -30,11 +30,26 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
+bool checkGCD(int A, int B) {
+    int cnt = 0;
+    int minv = min(A, B);
+    xrep(p, 2, minv+1) {
+        if(A%p==0 and A%p==0 and (int)pow(A, p-1)%1==(int)pow(B, p-1)%1){
+            print(p);
+        } 
+    }
+    return cnt;
+}
+
+
+
+
 int main() {
-    int N, M;
-    cin >> N >> M;
-    
-    print(N*(N-1)/2+M*(M-1)/2);
-    
+    int A, B;
+    cin >> A >> B;
+    int ans = checkGCD(A, B);
+    print(ans);
+
+
     return 0;
 }

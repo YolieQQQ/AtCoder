@@ -1,5 +1,6 @@
 use std::io::*;
 use std::str::FromStr;
+use std::collections::*;
 
 fn read<T: FromStr>() -> T {
     let stdin = stdin();
@@ -13,7 +14,14 @@ fn read<T: FromStr>() -> T {
     token.parse().ok().expect("failed to parse token")
 }
 
+
+
 fn main() {
-    let v = vec![1, 2, 3, 4];
-    println!("{}", v[7]);
+    let N: usize = read();
+    let mut S: String = read();
+    let mut mid = (S/2)-1;
+
+    let 
+    
+    
 }
