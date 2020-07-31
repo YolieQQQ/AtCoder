@@ -33,9 +33,33 @@ const int INF = 1001001001;
 int main() {
     int N;
     cin >> N;
-    double cnt = 0;
-    xrep(n, 1,N+1) {
-        if(n%2==1) ++cnt;
+    vector<int> P(N);
+    vector<pair<double, double>> A(N);
+    rep(i, N) {
+        int x, y;
+        cin >> x, y;
+        A[i].first = x;
+        A[i].second = y;
     }
-    printf("%.10f\n", cnt/(double)N);
+
+    rep(n, N) {
+        P[n] = n;
+    }
+    double sum = 0;
+    double prevX = 0;
+    double prevY = 0;
+    int i = 0;
+    do {
+        print(i);
+        for(auto p: P) {
+            sum += sqrt(pow((A[p].first-prevX), 2.0) + pow(A[p].second-prevY, 2.0));
+            prevX = A[p].first;
+            prevY = A[p].second;
+        }
+        
+    } while(next_permutation(P.begin(), P.end()));
+    print("---");
+    printf("%.10lf", sum);
+
+    return 0;
 }

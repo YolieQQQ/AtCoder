@@ -33,9 +33,8 @@ const int INF = 1001001001;
 int main() {
     int N;
     cin >> N;
-    double cnt = 0;
-    xrep(n, 1,N+1) {
-        if(n%2==1) ++cnt;
-    }
-    printf("%.10f\n", cnt/(double)N);
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    return 0;
 }

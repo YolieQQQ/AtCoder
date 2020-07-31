@@ -31,11 +31,20 @@ using ll = long long;
 const int INF = 1001001001;
 
 int main() {
-    int N;
-    cin >> N;
-    double cnt = 0;
-    xrep(n, 1,N+1) {
-        if(n%2==1) ++cnt;
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    vector<int> b(n);
+    vector<int> c(n);
+    c.push_back(0);
+
+    rep(i, n) {
+        cin >> a[i];
     }
-    printf("%.10f\n", cnt/(double)N);
+    rep(i, n)l {
+        cin >> b[i];
+    }
+
+
+    return 0;
 }

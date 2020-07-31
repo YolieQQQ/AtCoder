@@ -31,11 +31,11 @@ using ll = long long;
 const int INF = 1001001001;
 
 int main() {
-    int N;
+    double N;
     cin >> N;
     double cnt = 0;
-    xrep(n, 1,N+1) {
-        if(n%2==1) ++cnt;
+    xrep(n,1, N) {
+        if(n%2==1 ++cnt;
     }
-    printf("%.10f\n", cnt/(double)N);
+    printf("%.10f", cnt/N);
 }
