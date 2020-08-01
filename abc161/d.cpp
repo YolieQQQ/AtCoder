@@ -30,34 +30,37 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
-int N, M;// n tyoten m hen
-vector<int> visited(N, INF);
-vector<vector<int>> a2b(M);
-int ans = 0;
+int ans;
+int K;
 
-void dfs(int node);
-
-int main() {
-    cin >> N >> M;
-    vector<vector<int>> a2b(M);
-    rep(i, M) {
-        int a, b;
-        cin >> a >> b;
-        --a; --b;
-        a2b[a].push_back(b);
+void dfs(int k, string num) {
+    vector<int> nums;
+    if(k==K) {
+        return ans;
     }
-    return 0;
+
+    for(int i=num.size(); i>=0; --i) {
+        nums.push_back(num[i]-'0');
+    }
+    for(auto n: nums)
+    dfs(k+1, )
+
+
+
+
 }
 
-void dfs(int node) {
-    int i;
-    if(visited[node]==0) return;
-    for(i=0; i<N; i++){
-        if(visited[i]==INF) break;
+
+
+int main() {
+    cin >> K;
+    if(K<=10) {
+        print(K);
+        return 0;
     }
-    if(i==N-1) {
-        ++ans;
-    }
-    visited[node] = 0;
-    i
+    K -= 10;
+    dfs(0, "10");
+    print(ans);
+
+    return 0;
 }
