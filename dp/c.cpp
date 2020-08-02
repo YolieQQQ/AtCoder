@@ -30,33 +30,33 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
-
+int N;
+vector<vector<int>> abc;
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    vector<int> S(N, -1);
-    rep(i, M) {
-        int s, c;
-        cin >> s >> c;
-        --s;
-        if(i!=0 && S[s]!=-1) S[s] = min(S[s], c);
-        else S[s] = c;
+    cin >> N;
+    rep(i, N) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        abc.push_back({a, b, c});
     }
-    vector<int> num(N, 0);
-    rep(i, M) {
-        if(S[i]==-1) num[i] = 0;
-        else num[i] = S[i];
+    int maxv = max(abc[0][0], abc[0][1]);
+    maxv = max(maxv, abc[0][2]);
+    vector<int> dp(N, 0);
+    dp[0] = maxv;
+    int dont_use = -1;
+    rep(n, N) {
+        int prev_did = -1;
+        rep(did, 3) {
+            if(did==dont_use) continue;
+            if(dp[n]<dp[n-1]+abc[n][did]) {
+                dp[n] = dp[n-1]+abc[n][did];
+                prev_did = did;
+            }
+        }
+        dont_use = prev_did;
     }
-    int ans = 0;
-    reverse(num.begin(), num.end());
-    if(num[0]==0) {
-        print(-1);
-        return 0;
-    }
-    rep(k, N) {
-        ans += num[k] * pow(10, k);
-    }
-    print(ans);
+    print(dp[N-1]);
+
     return 0;
 }

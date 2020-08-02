@@ -30,33 +30,25 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
-
+vector<int> dp(100010, INF);
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    vector<int> S(N, -1);
-    rep(i, M) {
-        int s, c;
-        cin >> s >> c;
-        --s;
-        if(i!=0 && S[s]!=-1) S[s] = min(S[s], c);
-        else S[s] = c;
+    int N, K;
+    cin >> N >> K;
+    vector<int> H(N);
+    rep(i, N) cin >> H[i];
+    dp[0] = 0;
+    dp[1] = abs(H[1]-H[0]);
+    rep(i, N) {
+        int min_cost = INF;
+        for(int k=1; k<=K; k++) {
+            if(i-k<0) continue;
+            dp[i] = min(dp[i-k]+abs(H[i-k]-H[i]), dp[i]);
+        }
     }
-    vector<int> num(N, 0);
-    rep(i, M) {
-        if(S[i]==-1) num[i] = 0;
-        else num[i] = S[i];
-    }
-    int ans = 0;
-    reverse(num.begin(), num.end());
-    if(num[0]==0) {
-        print(-1);
-        return 0;
-    }
-    rep(k, N) {
-        ans += num[k] * pow(10, k);
-    }
-    print(ans);
+
+    print(dp[N-1]);
+
+
     return 0;
 }

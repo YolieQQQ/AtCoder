@@ -35,28 +35,37 @@ const int INF = 1001001001;
 int main() {
     int N, M;
     cin >> N >> M;
-    vector<int> S(N, -1);
+    vector<int> S(M);
+    vector<int> C(M);
     rep(i, M) {
         int s, c;
         cin >> s >> c;
         --s;
-        if(i!=0 && S[s]!=-1) S[s] = min(S[s], c);
-        else S[s] = c;
+        S[i] = s;
+        C[i] = c;
+
     }
     vector<int> num(N, 0);
+
     rep(i, M) {
-        if(S[i]==-1) num[i] = 0;
-        else num[i] = S[i];
+        num[S[i]] = C[i];
     }
     int ans = 0;
     reverse(num.begin(), num.end());
-    if(num[0]==0) {
-        print(-1);
-        return 0;
-    }
+    print(num);
     rep(k, N) {
         ans += num[k] * pow(10, k);
     }
+
+    int k = (int)log10(ans);
+    if(k+1<N) {
+        print(-1);
+        return 0;
+    }
+
+
     print(ans);
+
+
     return 0;
 }

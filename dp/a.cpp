@@ -29,34 +29,20 @@ void print(vector<vector<T>> &df) {
 #define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
 using ll = long long;
 const int INF = 1001001001;
-
-
+vector<int> dp(100010, INF);// key is asiba val is cost
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-    vector<int> S(N, -1);
-    rep(i, M) {
-        int s, c;
-        cin >> s >> c;
-        --s;
-        if(i!=0 && S[s]!=-1) S[s] = min(S[s], c);
-        else S[s] = c;
+    int N;
+    cin >> N;
+    vector<int> H(N);
+    rep(i, N) cin >> H[i];
+    dp[0] = 0;
+    dp[1] = abs(H[1]-H[0]);
+    xrep(i, 2, N) {
+        dp[i] = min(dp[i-1]+abs(H[i-1]-H[i]), dp[i-2]+abs(H[i-2]-H[i]));
     }
-    vector<int> num(N, 0);
-    rep(i, M) {
-        if(S[i]==-1) num[i] = 0;
-        else num[i] = S[i];
-    }
-    int ans = 0;
-    reverse(num.begin(), num.end());
-    if(num[0]==0) {
-        print(-1);
-        return 0;
-    }
-    rep(k, N) {
-        ans += num[k] * pow(10, k);
-    }
-    print(ans);
+    print(dp[N-1]);
+
+
     return 0;
 }
