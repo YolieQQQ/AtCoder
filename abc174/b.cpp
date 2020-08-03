@@ -30,44 +30,26 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
-int N, M, Q;
-vector<vector<int>> abcd;
-int max_point = -1;
-vector<int> A;
-vector<int> B;
-vector<int> C;
-vector<int> D;
-int maxv = -1;
-void dfs(int i, int score, vector<int> Ar) {
-    print(Ar);
-    if(i==N) {
-        maxv = max(maxv, score);
-    }
-    rep(i, N) {
-        if(Ar[B[i]]-Ar[A[i]] == C[i]) score += D[i];
-    }
-    if (Ar[i]-1>=0) {
-        Ar[i]--;
-    }
-    
-    dfs(i+1, score, Ar);
-}
-
-
 int main() {
-    cin >> N >> Q;
-    rep(i, Q) {
-        int a, b, c, d;
-        cin >> a >> b >> c >> d;
-        A.push_back(a);
-        B.push_back(b);
-        C.push_back(c);
-        D.push_back(d);
-    } 
-    vector<int> Ar(N, M);
-    dfs(0, 0, Ar);
+    int N;
+    double D;
+    cin >> N >> D;
+    vector<int> X(N);
+    vector<int> Y(N);
+    rep(i, N) {
+        cin >> X[i];
+        cin >> Y[i];
+    }
 
-    
+    int cnt = 0;
+    rep(i, N) {
+        double d = sqrt(pow(X[i], 2)+pow(Y[i], 2));
+        if(d<=D) {
+            cnt++;
+        }
+    }
+
+    print(cnt);
 
 
 

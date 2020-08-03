@@ -1,9 +1,3 @@
-#include<bits/stdc++.h>
-using namespace std;
-
-#define rep(i, n) for (int i = 0, i##_len = (n); i < i##_len; ++i)
-#define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
-using ll = long long;
 #include <bits/stdc++.h>
 using namespace std;
 void print() {
@@ -31,49 +25,32 @@ void print(vector<vector<T>> &df) {
         print(vec);
     }
 }
+#define rep(i, n) for (int i = 0, i##_len = (n); i < i##_len; ++i)
+#define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
+using ll = long long;
+const int INF = 1001001001;
+vector<int> vec_s;
+ll ans = 0;
 
-vector<int> num;
-int cnt = 0;
-bool visited[20000][20000];
-bool memo[2000000000000];
-int N = 0;
 
-void dfs(int i, int j) {
-    if (visited[i][j]) return;
-    if(i==N+1) {
-        return;
-    }
-    if(j==N+1) {
-        return;
-    }
-    visited[i][j] = true;
-    int n = 0;
-    for(int k=0; k<j-i; k++) {
-        n += num[i+k]*pow(10, k);
-    }
-    if(memo[n]) {
-        cnt++;
-    }
-    else if(n%2019==0 && n!=0) {
-        memo[n] = true;
-        cnt++;
-    }
-    print(n);
-    dfs(i, j+1);
-    dfs(i+1, j);
-    return;
-}
 
 int main() {
     string S;
     cin >> S;
-    for(auto s: S) {
-        num.push_back(s-'0');
+    rep(i, S.size()) {
+        vec_s.push_back(S[i]-'0');
     }
-    reverse(num.begin(), num.end());
-    N = num.size();
-    dfs(0, 0);
-    cout << cnt << endl;
+    int N = vec_s.size();
+    reverse(vec_s.begin(), vec_s.end());
+    rep(bit, 1<<N) {
+        rep(i, N) {
+            if(bit>>i&1) {
+                cout << i;
+            }
+        }
+        cout << endl;
+    }
+
 
     return 0;
 }

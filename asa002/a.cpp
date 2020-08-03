@@ -30,47 +30,15 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
-int N, M, Q;
-vector<vector<int>> abcd;
-int max_point = -1;
-vector<int> A;
-vector<int> B;
-vector<int> C;
-vector<int> D;
-int maxv = -1;
-void dfs(int i, int score, vector<int> Ar) {
-    print(Ar);
-    if(i==N) {
-        maxv = max(maxv, score);
-    }
-    rep(i, N) {
-        if(Ar[B[i]]-Ar[A[i]] == C[i]) score += D[i];
-    }
-    if (Ar[i]-1>=0) {
-        Ar[i]--;
-    }
-    
-    dfs(i+1, score, Ar);
-}
-
-
 int main() {
-    cin >> N >> Q;
-    rep(i, Q) {
-        int a, b, c, d;
-        cin >> a >> b >> c >> d;
-        A.push_back(a);
-        B.push_back(b);
-        C.push_back(c);
-        D.push_back(d);
-    } 
-    vector<int> Ar(N, M);
-    dfs(0, 0, Ar);
-
-    
-
-
-
-
+    int A, B, H, M;
+    cin >> A >> B >> H >> M;
+    double pi = acos(-1);
+    double theta = ((double)M*(1.0/(60.0*12.0))+(double)H/(double)12-(double)M/(double)60)*2*pi;
+    if(theta>2*pi) {
+        theta -= 2*pi;
+    }
+    double d = sqrt(B*B+A*A-2*A*B*cos(theta));
+    printf("%.13lf\n", d);
     return 0;
 }

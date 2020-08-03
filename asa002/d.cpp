@@ -30,47 +30,34 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
-int N, M, Q;
-vector<vector<int>> abcd;
-int max_point = -1;
-vector<int> A;
-vector<int> B;
-vector<int> C;
-vector<int> D;
-int maxv = -1;
-void dfs(int i, int score, vector<int> Ar) {
-    print(Ar);
-    if(i==N) {
-        maxv = max(maxv, score);
+vector<int> si(int N) {
+    vector<int> sosu;
+    for(int i=N-1; i>=2; i--) {
+        if(N%i==0) {
+            int comp = 0;
+            int cnt = 0;
+            for(int j=2; j<i; j++) {
+                comp++;
+                if(i%j==0) {
+                    ++cnt;
+                }
+            }
+            if(comp==cnt) {
+                sosu.push_back(i);
+            }
+        }
     }
-    rep(i, N) {
-        if(Ar[B[i]]-Ar[A[i]] == C[i]) score += D[i];
-    }
-    if (Ar[i]-1>=0) {
-        Ar[i]--;
-    }
-    
-    dfs(i+1, score, Ar);
+    return sosu;
 }
 
 
+
 int main() {
-    cin >> N >> Q;
-    rep(i, Q) {
-        int a, b, c, d;
-        cin >> a >> b >> c >> d;
-        A.push_back(a);
-        B.push_back(b);
-        C.push_back(c);
-        D.push_back(d);
-    } 
-    vector<int> Ar(N, M);
-    dfs(0, 0, Ar);
-
-    
-
-
-
+    ll N;
+    cin >> N;
+    auto pv = si(N);
+    sort(pv.begin(), pv.end());
+    print(log10(pv[1])+1);
 
     return 0;
 }
