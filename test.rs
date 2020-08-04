@@ -14,6 +14,9 @@ fn read<T: FromStr>() -> T {
 }
 
 fn main() {
-    let v = vec![1, 2, 3, 4];
-    println!("{}", v[7]);
+    let N = read();
+    let v: Vec<i32> = read();
+    for i in (0..N) {
+        println!("{}", v[i]);
+    }
 }
