@@ -29,28 +29,18 @@ void print(vector<vector<T>> &df) {
 #define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
 using ll = long long;
 const int INF = 1001001001;
-vector<int> vec_s;
-ll ans = 0;
-
-
 
 int main() {
-    string S;
-    cin >> S;
-    rep(i, S.size()) {
-        vec_s.push_back(S[i]-'0');
-    }
-    int N = vec_s.size();
-    reverse(vec_s.begin(), vec_s.end());
-    rep(bit, 1<<N) {
-        rep(i, N) {
-            if(bit>>i&1) {
-                cout << i;
-            }
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+    int cnt = 0;
+    rep(i, N) {
+        xrep(j, i, N) {
+            if(abs(i-j)==A[i]+A[j]) ++cnt;
         }
-        cout << endl;
     }
-
-
+    print(cnt);
     return 0;
 }

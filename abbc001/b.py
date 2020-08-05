@@ -5,20 +5,22 @@ from bisect import bisect_left, bisect_right, bisect, insort_left, insort_right,
 from itertools import product, combinations,permutations
 from copy import deepcopy
 import sys
-from math import log10
+import re
 sys.setrecursionlimit(4100000)
 
 
 
 if __name__ == '__main__':
-    K = int(input())
-    for i in range(1, K):
-        print(K%i)
-            l = i
-            break
-    print(l)
-    print(mod)
-    print(-1)
-    
-        
-
+    S = list(input())
+    ans = ''
+    cnt = 0
+    for s in S:
+        if s==' ' and cnt==0:
+            cnt += 1
+            ans += ','
+        elif s==' ' and cnt !=0:
+            continue
+        else:
+            ans += s
+            cnt = 0
+    print(ans)
