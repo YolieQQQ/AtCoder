@@ -35,29 +35,15 @@ int main() {
     cin >> N;
     string C;
     cin >> C;
-    int cnt = 0;
-    int mid;
-    if(N%2==0) {
-        mid = N/2-1;
+    int mid = N/2;
+    int cntW = 0;
+    int cntR = 0;
+    rep(i, mid) {
+        if(C[i]=='W') ++cntW;
     }
-    else {
-        mid = N/2;
+    xrep(j, mid+1, N) {
+        if(C[i]=='R') ++ cntR;
     }
-    vector<int> WIndex;
-    vector<int> RIndex;
-    rep(i, mid+1) {
-        if(C[i]=='W') {
-            WIndex.push_back(i);
-        }
-    }
-    xrep(i, mid+1, N) {
-        if(C[i]=='R') {
-            RIndex.push_back(i);
-        }
-    }
-    reverse(RIndex.begin(), RIndex.end());
-    
-    int ans = max(WIndex.size(), RIndex.size());
-    print(ans);
+    print(max(cntW, cntR));
     return 0;
 }

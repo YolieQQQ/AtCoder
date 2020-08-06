@@ -30,34 +30,28 @@ void print(vector<vector<T>> &df) {
 using ll = long long;
 const int INF = 1001001001;
 
+
+
+int bills[3] = {10000, 5000, 1000};
+
 int main() {
-    int N;
-    cin >> N;
-    string C;
-    cin >> C;
-    int cnt = 0;
-    int mid;
-    if(N%2==0) {
-        mid = N/2-1;
-    }
-    else {
-        mid = N/2;
-    }
-    vector<int> WIndex;
-    vector<int> RIndex;
-    rep(i, mid+1) {
-        if(C[i]=='W') {
-            WIndex.push_back(i);
+    int N, Y;
+    cin >> N >> Y;
+
+
+    rep(i, N+1) {
+        rep(j, N+1) {
+            int k = N-(j+i);
+            if(k<0) continue;
+            if(bills[0]*i+bills[1]*j+bills[2]*k==Y) {
+                print(i, j, k);
+                return 0;
+            }
         }
     }
-    xrep(i, mid+1, N) {
-        if(C[i]=='R') {
-            RIndex.push_back(i);
-        }
-    }
-    reverse(RIndex.begin(), RIndex.end());
-    
-    int ans = max(WIndex.size(), RIndex.size());
-    print(ans);
+
+    print(-1, -1, -1);
+
+
     return 0;
 }
