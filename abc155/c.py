@@ -18,10 +18,24 @@ if __name__ == '__main__':
     for i in range(N):
         S_list.append(input())
 
-    S_list.sort()
-
-    S_counter = Counter(S_list)
+    for s in S_list:
+        if s not in s_hash:
+            s_hash[s] = 1
+        else:
+            s_hash[s] += 1
+    max_p = 0
+    max_p_name = []
+    for k, v in s_hash.items():
+        if max_p < v:
+            max_p_name = []
+            max_p = v
+        if max_p == v:
+            max_p_name.append(k)
     
+    for p in sorted(max_p_name):
+        print(p)
+
+
 
     
 

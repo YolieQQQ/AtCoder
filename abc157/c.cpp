@@ -27,36 +27,37 @@ void print(vector<vector<T>> &df) {
 }
 #define rep(i, n) for (int i = 0, i##_len = (n); i < i##_len; ++i)
 #define xrep(i, a, b) for (int i = int(a); i < int(b); ++i)
+#define zrep(i, a, b, c) for (int i = int(a); i < int(b); i+=int(c))
 using ll = long long;
 const int INF = 1001001001;
-
-
 
 int main() {
     int N, M;
     cin >> N >> M;
-    vector<int> S(N, -1);
+    vector<int> S(M);
+    vector<int> C(M);
     rep(i, M) {
-        int s, c;
-        cin >> s >> c;
-        --s;
-        if(i!=0 && S[s]!=-1) S[s] = min(S[s], c);
-        else S[s] = c;
+        int s;
+        cin >> s;
+        s--;
+        S[i] = s;
+        cin >> C[i];
     }
-    vector<int> num(N, 0);
+    vector<int> ans(N, 0);
     rep(i, M) {
-        if(S[i]==-1) num[i] = 0;
-        else num[i] = S[i];
+        int s = S[i];
+        int c = C[i];
+        ans[s] = c;
     }
-    int ans = 0;
-    reverse(num.begin(), num.end());
-    if(num[0]==0) {
+    if(ans[0]==0) {
         print(-1);
         return 0;
     }
-    rep(k, N) {
-        ans += num[k] * pow(10, k);
+
+    rep(i, N) {
+        cout << ans[i];
     }
-    print(ans);
+    cout << endl;
+
     return 0;
 }
