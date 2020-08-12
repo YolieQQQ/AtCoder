@@ -1,7 +1,16 @@
-N, K = map(int, input().split())
 
-n = N//K
-m1 = N-K*n
-m2 = abs(N-K*(n+1))
-ans = min(m1, m2)
-print(ans)
+if __name__ == '__main__':
+    N, M = map(int, input().split())
+    A = list(map(int, input().split()))
+
+    A = sorted(A)[::-1]
+    s = sum(A)
+    cnt = 0
+    for i in range(M):
+        if s<=4*M*A[i]:
+            cnt += 1
+    if cnt==M:
+        print("Yes")
+    else:
+        print("No")
+    
